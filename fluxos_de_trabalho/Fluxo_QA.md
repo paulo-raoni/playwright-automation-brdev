@@ -1,229 +1,243 @@
-# ⚙️ **Automação de Fluxos E2E – Playwright**
 
 ---
 
-## 📖 **Introdução**
-
-Automatizar fluxos E2E (end-to-end) é essencial para garantir a qualidade e escalabilidade do sistema.
-Este documento define o **padrão visual, técnico e de organização** para gravação, documentação e acompanhamento de testes E2E usando o Playwright.
+# ⚙️ Automação de Fluxos E2E – Playwright
 
 ---
 
-## 🗂️ **Sumário**
+## 📖 Introdução
+
+Este documento padroniza o processo de gravação, documentação e acompanhamento dos fluxos E2E usando Playwright. O objetivo é otimizar testes, garantir rastreabilidade e promover agilidade e segurança para toda a equipe.
+
+---
+
+## 🗂️ Sumário
 
 1. [Visão Geral – Macrofluxo do Processo](#1-visão-geral--macrofluxo-do-processo)
 2. [Checklist de Preparação](#2-checklist-de-preparação)
-3. [Passo a Passo – Gravação de Fluxos (Playwright)](#3-passo-a-passo--gravação-de-fluxos-playwright)
-4. [Template de Documentação dos Fluxos](#4-template-de-documentação-dos-fluxos)
-5. [Exemplo de Preenchimento – Documentação Completa](#5-exemplo-de-preenchimento--documentação-completa)
-6. [Dashboard de Status dos Fluxos](#6-dashboard-de-status-dos-fluxos)
-7. [Dúvidas Frequentes – FAQ](#7-dúvidas-frequentes--faq)
-8. [Considerações Finais](#8-considerações-finais)
+3. [Abertura e Navegação no Terminal](#3-abertura-e-navegação-no-terminal)
+4. [Gravação do Fluxo – Passo a Passo](#4-gravação-do-fluxo--passo-a-passo)
+5. [Salvamento e Nomeação do Script](#5-salvamento-e-nomeação-do-script)
+6. [Documentação e Template](#6-documentação-e-template)
+7. [Entrega e Revisão Técnica](#7-entrega-e-revisão-técnica)
+8. [Dashboard e Acompanhamento](#8-dashboard-e-acompanhamento)
+9. [Dúvidas Frequentes – FAQ](#9-dúvidas-frequentes--faq)
+10. [Resumo Visual – Jornada Completa](#10-resumo-visual--jornada-completa)
+11. [Considerações Finais](#11-considerações-finais)
 
 ---
 
-## 1️⃣ **Visão Geral – Macrofluxo do Processo**
+## 1️⃣ Visão Geral – Macrofluxo do Processo
+
+**O processo de automação segue estas etapas:**
+
+```ascii
+╭─────────────╮
+│ PREPARAÇÃO  │
+╰─────┬───────╯
+      v
+╭─────────────╮
+│ GRAVAÇÃO    │
+╰─────┬───────╯
+      v
+╭─────────────╮
+│ DOCUMENTAÇÃO│
+╰─────┬───────╯
+      v
+╭─────────────╮
+│ REVISÃO     │
+╰─────┬───────╯
+      v
+╭─────────────╮
+│ AUTOMATIZAÇÃO│
+╰─────────────╯
+```
+
+Cada etapa é detalhada nas próximas seções, com orientações específicas e fluxos ilustrativos únicos.
+
+---
+
+## 2️⃣ Checklist de Preparação
+
+Antes de iniciar a gravação de qualquer fluxo, recomenda-se conferir:
+
+* [ ] Acesso ao terminal do sistema operacional utilizado
+* [ ] Caminho correto para a pasta dos scripts
+* [ ] URL do sistema em teste disponível
+* [ ] Template de documentação em mãos
+* [ ] Prioridade dos fluxos a serem gravados definida
+* [ ] Pasta de salvamento dos scripts pronta para uso
+
+> 💡 *Ter o ambiente preparado reduz falhas e evita retrabalho.*
+
+---
+
+## 3️⃣ Abertura e Navegação no Terminal
+
+### **Como abrir o terminal?**
+
+* **Windows:**
+
+  * Pressione `Win + R` → digite `cmd` → pressione `Enter`.
+
+* **Mac:**
+
+  * Pressione `Cmd + Espaço` → digite `Terminal` → pressione `Enter`.
+
+* **Linux:**
+
+  * Abra o menu de aplicativos → procure por “Terminal” → abra.
+
+#### **Fluxo Visual – Abertura do Terminal**
+
+```ascii
+╔═════════════════════════════════╗
+║     Abrir Terminal no SO       ║
+╚═════════════════════════════════╝
+   ⬇️ Escolher plataforma
+┌────────────┬──────────────┬────────────┐
+│  Windows   │    Mac       │   Linux    │
+├────────────┼──────────────┼────────────┤
+│ Win+R      │ Cmd+Espaço   │ Menu Apps  │
+│ → cmd      │ → Terminal   │ → Terminal │
+└────────────┴──────────────┴────────────┘
+```
+
+---
+
+### **Como navegar até a pasta correta?**
+
+* Utilizar `cd` para entrar na pasta:
+
+  * Windows: `cd C:\Users\QA\Projetos\playwright-tests`
+  * Mac/Linux: `cd /home/qa/playwright-tests`
+* Para voltar um diretório: `cd ..`
+* Para listar arquivos:
+
+  * Windows: `dir`
+  * Mac/Linux: `ls`
+
+#### **Fluxo Visual – Navegação**
 
 ```ascii
 ╔════════════════════════════╗
-║      Fluxo Global         ║
+║  Navegação Entre Pastas    ║
 ╚════════════════════════════╝
-     ⬇️
-[ 1. Gravação do Fluxo 🖱️ ]
-     ⬇️
-[ 2. Salvamento e Nomeação 💾 ]
-     ⬇️
-[ 3. Preenchimento do Template 📝 ]
-     ⬇️
-[ 4. Entrega para Revisão Técnica 🔍 ]
-     ⬇️
-[ 5. Transformação em Teste Automatizado 🤖 ]
-     ⬇️
-[ 6. Validação & Atualização do Dashboard ✅ ]
+         |
+   cd caminho/da/pasta
+         |
+     cd ..   ← Volta
+         |
+      dir/ls  ← Lista arquivos
 ```
 
-* Cada etapa é obrigatória para garantir rastreabilidade, clareza e padronização.
+> ℹ️  Certifique-se de estar na pasta correta antes de iniciar a gravação.
 
 ---
 
-## 2️⃣ **Checklist de Preparação**
+## 4️⃣ Gravação do Fluxo – Passo a Passo
 
-> 📋 **Antes de iniciar a gravação, confirme:**
+A gravação do fluxo é a base do processo de automação. Cada fluxo deve ser gravado isoladamente, sem misturar etapas ou funcionalidades.
 
-* [ ] Acesso ao terminal (Windows, Mac ou Linux)
-* [ ] Caminho da pasta onde os scripts serão salvos
-* [ ] URL do sistema a ser testado
-* [ ] Template de documentação disponível
-* [ ] Local para salvar scripts e documentação
-* [ ] Agenda e prioridades dos fluxos que serão gravados
+### **Instruções Detalhadas**
+
+1. Confirme que está na pasta correta do terminal.
+
+2. Digite e execute o comando (ajuste a URL conforme necessário):
+
+   ```
+   npx playwright codegen https://enderecodomeusistema.com
+   ```
+
+3. O Playwright abrirá uma janela do navegador.
+
+4. Realize o fluxo completo (exemplo: login, cadastro, criação de ticket), do início ao fim, sem sair ou navegar por áreas não relacionadas.
+
+5. Evite abrir menus, acessar páginas desnecessárias ou testar mais de um fluxo na mesma gravação.
+
+6. Caso algum passo seja feito de maneira errada, feche a janela e inicie novamente.
+
+#### **Fluxo Visual – Gravação**
+
+```ascii
+╔══════════════════════════════════╗
+║        Gravação do Fluxo        ║
+╚══════════════════════════════════╝
+        |
+[ Iniciar comando codegen ]
+        |
+[ Navegador Playwright abre ]
+        |
+[ Realizar UM fluxo completo ]
+        |
+[ Revisar ações antes de exportar ]
+```
+
+> 🎯 *Fluxo bem gravado = automação mais confiável!*
 
 ---
 
-## 3️⃣ **Passo a Passo – Gravação de Fluxos (Playwright)**
+## 5️⃣ Salvamento e Nomeação do Script
 
-### 3.1. **Abertura do Terminal**
+Após concluir a gravação, é fundamental exportar e nomear o script corretamente.
+
+### **Instruções Detalhadas**
+
+1. Ao finalizar o fluxo no navegador, localize a opção para exportar/salvar o script.
+2. Escolha um nome de arquivo objetivo e descritivo, por exemplo:
+
+   * `login-basico.spec.ts`
+   * `criar-ticket.spec.ts`
+   * `editar-perfil.spec.ts`
+3. Salve o arquivo na pasta designada para scripts.
+
+#### **Fluxo Visual – Salvamento**
 
 ```ascii
 ╔════════════════════════════╗
-║  Fluxo: Abrir o Terminal  ║
+║     Salvamento do Script  ║
 ╚════════════════════════════╝
-        ⬇️
-[ Escolher Sistema Operacional ]
-        ⬇️
-┌─────────────┬──────────────┬────────────┐
-│   Windows   │     Mac      │   Linux    │
-├─────────────┼──────────────┼────────────┤
-│ Win+R, cmd  │ Cmd+Space,   │ Menu Apps, │
-│ ENTER       │ digite       │ procure    │
-│             │ "Terminal"   │ "Terminal" │
-└─────────────┴──────────────┴────────────┘
-```
-
-* **Dica:** É importante trabalhar sempre na mesma pasta, para centralizar todos os scripts gravados.
-
----
-
-### 3.2. **Navegação pelo Terminal**
-
-```ascii
-╔══════════════════════════════════════╗
-║  Fluxo: Navegar entre Pastas (cd)   ║
-╚══════════════════════════════════════╝
-        ⬇️
-[ cd caminho/da/pasta ]
-        ⬇️
-[ cd .. ]   ← Volta um diretório
-        ⬇️
-[ dir ]     ← Lista arquivos (Windows)
-[ ls ]      ← Lista arquivos (Mac/Linux)
-```
-
-* **Exemplo Windows:**
-  `cd C:\Users\QA\Projetos\playwright-tests`
-* **Exemplo Mac/Linux:**
-  `cd /home/qa/playwright-tests`
-
----
-
-### 3.3. **Início da Gravação**
-
-```ascii
-╔═════════════════════════════╗
-║  Fluxo: Iniciar Gravação   ║
-╚═════════════════════════════╝
-        ⬇️
-[ Confirmar pasta correta ]
-        ⬇️
-[ Executar comando Playwright ]
-        ⬇️
-npx playwright codegen https://enderecodomeusistema.com
-        ⬇️
-[ Abrir navegador automaticamente ]
-```
-
-* O comando deve ser executado sempre na pasta de scripts.
-
----
-
-### 3.4. **Execução do Fluxo no Navegador**
-
-```ascii
-╔════════════════════════════════╗
-║  Fluxo: Executar o Processo   ║
-╚════════════════════════════════╝
-        ⬇️
-[ Navegador aberto pelo Playwright ]
-        ⬇️
-[ Realizar UM fluxo completo (ex: login) ]
-        ⬇️
-[ Não misturar fluxos na mesma gravação ]
-```
-
-* Manter o processo objetivo e direto.
-* Se houver qualquer erro, reiniciar a gravação do fluxo.
-
----
-
-### 3.5. **Finalização e Salvamento**
-
-```ascii
-╔═════════════════════════════════════╗
-║  Fluxo: Exportar e Nomear Script   ║
-╚═════════════════════════════════════╝
-        ⬇️
-[ Finalizar fluxo no navegador ]
-        ⬇️
-[ Exportar/Salvar script gerado ]
-        ⬇️
-[ Nomear como: login-basico.spec.ts ]
-        ⬇️
+        |
+[ Finalizar gravação ]
+        |
+[ Exportar script gerado ]
+        |
+[ Nomear de forma clara ]
+        |
 [ Salvar na pasta padrão ]
 ```
 
-* O nome do arquivo deve ser objetivo e refletir o fluxo gravado.
+> 🗂️ *Organização nos nomes facilita busca e manutenção dos testes.*
 
 ---
 
-### 3.6. **Documentação do Fluxo**
+## 6️⃣ **Documentação e Template**
 
-```ascii
-╔══════════════════════════════╗
-║  Fluxo: Documentar o Script ║
-╚══════════════════════════════╝
-        ⬇️
-[ Preencher template padrão ]
-        ⬇️
-[ Nome do Fluxo | Objetivo | Passos | Observações ]
-        ⬇️
-[ Salvar junto ao script ]
-```
+### **O que deve ser salvo e em qual formato?**
 
-* Todo fluxo deve estar acompanhado do template preenchido (próxima seção).
+* **Arquivo de Script Gerado:**
 
----
+  * Tipo: `.ts` ou `.js` (gerado pelo Playwright Codegen)
+  * Exemplo: `login-basico.spec.ts`
+* **Arquivo de Documentação do Fluxo:**
 
-### 3.7. **Entrega e Revisão**
+  * Tipo: `.md` (recomendado), `.txt` (opcional, se não houver suporte ao Markdown)
+  * Exemplo: `login-basico.md`
+* **Organização recomendada:**
 
-```ascii
-╔═════════════════════════════╗
-║  Fluxo: Envio para Revisão ║
-╚═════════════════════════════╝
-        ⬇️
-[ Enviar script + template ]
-        ⬇️
-[ Aguardar revisão técnica ]
-        ⬇️
-[ Só iniciar novo fluxo após retorno ]
-```
+  ```
+  /fluxos-gravados
+    ├── login-basico.spec.ts
+    ├── login-basico.md
+    ├── criar-ticket.spec.ts
+    ├── criar-ticket.md
+  ```
+
+> 💡 **Sugestão:** Utilize sempre arquivos `.md` para documentação — facilita leitura, edição e padronização.
 
 ---
 
-## 4️⃣ **Template de Documentação dos Fluxos**
-
-> 📝 **Template Padrão**
->
-> Preencher todas as informações abaixo e anexar junto ao arquivo de script.
-
-```markdown
----
-Nome do Fluxo:
-[Exemplo: Login Básico]
-
-Objetivo do Fluxo:
-[Descrever o objetivo principal do fluxo.]
-
-Passos Executados:
-1. [Listar cada etapa realizada.]
-2. ...
-
-Observações:
-[Indicar erros, alertas, mensagens, comportamentos inesperados, etc.]
----
-```
-
----
-
-## 5️⃣ **Exemplo de Preenchimento – Documentação Completa**
+### **Template de Documentação (Exemplo .md)**
 
 ```markdown
 ---
@@ -231,7 +245,7 @@ Nome do Fluxo:
 Login Básico
 
 Objetivo do Fluxo:
-Verificar que o usuário consegue acessar o sistema utilizando credenciais válidas.
+Validar que o usuário consegue acessar o sistema utilizando credenciais válidas.
 
 Passos Executados:
 1. Acessar página de login (/login)
@@ -245,70 +259,283 @@ Fluxo executado conforme esperado. Não foram observados erros.
 ---
 ```
 
----
-
-## 6️⃣ **Dashboard de Status dos Fluxos**
-
-> 📊 **Controle e Visão Global**
->
-> Utilize a tabela abaixo para acompanhar fluxos gravados, revisados e automatizados.
-
-| Nome do Fluxo          | Objetivo                | Status  | Script                    | Última Revisão | Observações        |
-| ---------------------- | ----------------------- | ------- | ------------------------- | -------------- | ------------------ |
-| Login Básico           | Login no sistema        | Gravado | login-basico.spec.ts      | 2024-07-10     | OK                 |
-| Criação de Ticket      | Abrir novo chamado      | Gravado | criar-ticket.spec.ts      | 2024-07-10     | OK                 |
-| Visualização de Ticket | Ver detalhes do chamado | Gravado | visualizar-ticket.spec.ts | 2024-07-10     | Aguardando revisão |
+* Salve o template preenchido junto ao arquivo de script correspondente.
+* Cada fluxo = 1 arquivo `.spec.ts` + 1 arquivo `.md` (ou `.txt`).
 
 ---
 
-## 7️⃣ **Dúvidas Frequentes – FAQ**
-
-### ❓ Perguntas Comuns
-
-* **É necessário saber programar?**
-  Não. Basta seguir o passo a passo, preencher o template e realizar o fluxo como no uso normal do sistema.
-
-* **Posso gravar vários fluxos juntos?**
-  Não. O ideal é sempre um fluxo por gravação para garantir organização, clareza e facilidade de manutenção.
-
-* **O que fazer se errar durante a gravação?**
-  Recomenda-se reiniciar o processo do fluxo. Isso evita registros confusos ou etapas misturadas.
-
-* **Como proceder em caso de dúvidas técnicas ou dificuldades?**
-  Consultar o responsável técnico do projeto ou a equipe de suporte, conforme procedimentos internos.
-
----
-
-## 8️⃣ **Considerações Finais**
-
-> 💡 A automação estruturada de fluxos com Playwright traz benefícios diretos para qualidade, agilidade e segurança dos testes do sistema.
->
-> * Documentar e organizar os fluxos facilita a evolução do projeto.
-> * A rastreabilidade é ampliada, evitando retrabalho manual.
-> * O alinhamento de toda a equipe reduz falhas e agiliza entregas.
-
-**Este material deve ser revisado e atualizado sempre que houver mudanças no processo, para garantir as melhores práticas do time.**
-
----
-
-## 🎨 **Resumo Visual – Jornada Completa**
+### **Fluxo Visual – Documentação**
 
 ```ascii
-╔════════════════════════════════════════════════════════════════════════╗
-║               JORNADA DE AUTOMAÇÃO DE FLUXOS E2E                    ║
-╠═════════════════════╦════════════════╦════════════════╦══════════════╣
-║  Gravação do Fluxo  ║  Documentação  ║  Revisão       ║  Automação   ║
-╠═════════════════════╬════════════════╬════════════════╬══════════════╣
-║ Playwright Codegen  ║ Template Padrão║ Técnico/Dev    ║ Teste E2E    ║
-╠═════════════════════╬════════════════╬════════════════╬══════════════╣
-║      🖱️             ║      📝         ║      🔍         ║     🤖       ║
-╚═════════════════════╩════════════════╩════════════════╩══════════════╝
+╔════════════════════════════════╗
+║ Documentação do Fluxo Gravado ║
+╚════════════════════════════════╝
+        |
+[ Script Playwright (.spec.ts) ]
+        |
+[ Preencher template (.md) ]
+        |
+[ Salvar ambos juntos na pasta ]
 ```
 
 ---
 
-**FIM DO DOCUMENTO**
+## 7️⃣ Entrega e Revisão Técnica
 
-> Para sugestões, dúvidas ou atualização de etapas, entrar em contato com o responsável técnico do projeto.
+A revisão técnica assegura que o fluxo está corretamente gravado e documentado antes de ser automatizado.
+
+### **Instruções Detalhadas**
+
+1. Envie o script gravado e o template preenchido conforme orientação do projeto.
+2. Aguarde a validação da equipe técnica antes de iniciar novos fluxos.
+3. Caso a revisão aponte ajustes necessários, revise e envie novamente.
+
+#### **Fluxo Visual – Revisão**
+
+```ascii
+╔═════════════════════════╗
+║    Entrega e Revisão    ║
+╚═════════════════════════╝
+        |
+[ Enviar script + template ]
+        |
+[ Revisão técnica ]
+        |
+[ Correção se necessário ]
+        |
+[ Aprovação final ]
+```
+
+> 🔍 *Revisão é etapa obrigatória. Não prossiga sem aprovação.*
+
+---
+
+## 8️⃣ **Dashboard e Acompanhamento**
+
+### **O que é o dashboard?**
+
+* É um arquivo de controle central dos fluxos testados e seu status, normalmente um arquivo Markdown chamado `DASHBOARD.md` ou uma planilha compartilhada.
+
+### **Como preencher?**
+
+* O dashboard pode ser atualizado manualmente pela própria QA, pelo dev, ou por qualquer pessoa do time responsável pela organização dos fluxos.
+* Basta adicionar ou atualizar uma linha para cada novo fluxo.
+
+#### **Exemplo de Dashboard (DASHBOARD.md)**
+
+```markdown
+| Nome do Fluxo          | Objetivo                  | Status    | Script                  | Documentação          | Última Revisão        | Observações          |
+|------------------------|---------------------------|-----------|-------------------------|----------------------|-----------------------|----------------------|
+| Login Básico           | Login no sistema          | Gravado   | login-basico.spec.ts    | login-basico.md      | 2024-07-10            | OK                   |
+| Criação de Ticket      | Abrir novo chamado        | Gravado   | criar-ticket.spec.ts    | criar-ticket.md      | 2024-07-10            | OK                   |
+| Visualização de Ticket | Ver detalhes do chamado   | Gravado   | visualizar-ticket.spec.ts| visualizar-ticket.md | 2024-07-10           | Aguardando revisão   |
+```
+
+> **Instrução para QA:**
+> Sempre que gravar um novo fluxo, inclua uma nova linha na tabela, preenchendo os campos conforme os arquivos salvos.
+> Se não souber mexer em Markdown, pode preencher os campos em uma planilha e pedir para um dev transferir para o `DASHBOARD.md`.
+
+---
+
+### **Fluxo Visual – Dashboard**
+
+```ascii
+╔══════════════════════════════╗
+║   Atualização do Dashboard  ║
+╚══════════════════════════════╝
+        |
+[ Novo fluxo documentado ]
+        |
+[ Adicionar/atualizar linha no DASHBOARD.md ]
+        |
+[ Salvar e compartilhar com o time ]
+```
+
+---
+
+## 9️⃣ Dúvidas Frequentes – FAQ
+
+* **É necessário saber programar?**
+  Não. Basta seguir o passo a passo, preencher o template e realizar o fluxo normalmente.
+
+* **Posso gravar vários fluxos juntos?**
+  Não. Grave sempre um fluxo por vez para garantir organização e clareza.
+
+* **O que fazer se errar durante a gravação?**
+  Recomenda-se reiniciar o processo desde o início.
+
+* **Como proceder em caso de dúvidas técnicas?**
+  Consulte o responsável técnico ou a equipe de suporte do projeto.
+
+#### **Fluxo Visual – FAQ**
+
+```ascii
+╔══════════════════════════╗
+║      Dúvidas Comuns      ║
+╚══════════════════════════╝
+    |
+[ Seguir passo a passo ]
+    |
+[ Consultar FAQ em caso de dúvida ]
+    |
+[ Acionar suporte se necessário ]
+```
+
+> 🤝 *Dúvidas recorrentes devem ser comunicadas para melhoria deste documento.*
+
+---
+
+## 🔟 **Resumo Visual – Jornada Completa**
+
+### **Fluxo Macro (Ajustado e Humanizado)**
+
+```ascii
+╔═════════════════════════════════════════════════════════════════════╗
+║           JORNADA DE AUTOMAÇÃO DE FLUXOS E2E - PLAYWRIGHT         ║
+╠══════╦═════════════╦═══════════════╦═══════════════╦══════╦══════╣
+║ Prep ║ Gravação    ║ Documentação  ║ Revisão       ║ Dash ║ Final║
+╠══════╬═════════════╬═══════════════╬═══════════════╬══════╬══════╣
+║ 📋   ║ 🖱️           ║ 📝            ║ 🔍            ║ 📊   ║ ✅   ║
+╠══════╩══════╦══════╩══════╦══════╩══╦═════╩═══════╦══════╩══════╣
+║             ⬇️            ⬇️         ⬇️             ⬇️           ║
+║   Fluxo      Fluxo         Fluxo      Fluxo        Fluxo         ║
+║ de Prep   de Gravação   de Doc/Erro  de Revisão    de Dashboard  ║
+╚═══════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+## 🛑 **Fluxo de Erro**
+
+Situação: Gravação interrompida, fluxo errado, ação inesperada.
+
+### **O que fazer?**
+
+1. Fechar a janela do Playwright Codegen.
+2. Voltar ao terminal.
+3. Iniciar novamente a gravação.
+4. Se o erro for recorrente, registrar no campo “Observações” do template.
+5. Se não conseguir seguir, comunicar o responsável técnico.
+
+#### **Fluxo Visual – Erro**
+
+```ascii
+╔════════════════════════════╗
+║        Fluxo de Erro      ║
+╚════════════════════════════╝
+        |
+[ Gravação apresenta erro ]
+        |
+[ Fechar janela / interromper ]
+        |
+[ Recomeçar gravação ]
+        |
+[ (Se necessário) Anotar em Observações ]
+        |
+[ Comunicar responsável, se for o caso ]
+```
+
+---
+
+## 🔁 **Fluxo de Regravação**
+
+Situação: O fluxo foi reprovado na revisão, está incompleto ou foi identificado erro de gravação.
+
+### **O que fazer?**
+
+1. Rever as orientações do revisor.
+2. Iniciar o processo de gravação novamente, corrigindo o ponto identificado.
+3. Salvar o novo arquivo, preferencialmente com o mesmo nome do fluxo anterior (sobrescrevendo ou criando uma nova versão, como `login-basico-v2.spec.ts`).
+4. Atualizar a documentação e dashboard.
+
+#### **Fluxo Visual – Regravação**
+
+```ascii
+╔════════════════════════════╗
+║    Fluxo de Regravação    ║
+╚════════════════════════════╝
+        |
+[ Revisão aponta ajuste ]
+        |
+[ Rever orientações ]
+        |
+[ Regravar fluxo no Playwright ]
+        |
+[ Salvar nova versão do script ]
+        |
+[ Atualizar documentação e dashboard ]
+```
+
+---
+
+## 🚦 **Onboarding Visual para Iniciantes**
+
+### **Resumo Visual Passo a Passo**
+
+```ascii
+╭──────────────╮
+│ 1. Preparar │
+│    Ambiente │
+╰──────┬──────╯
+       v
+╭──────────────╮
+│ 2. Abrir     │
+│    Terminal  │
+╰──────┬──────╯
+       v
+╭──────────────╮
+│ 3. Navegar   │
+│    até Pasta │
+╰──────┬──────╯
+       v
+╭──────────────╮
+│ 4. Executar  │
+│    comando   │
+│    Playwright│
+╰──────┬──────╯
+       v
+╭──────────────╮
+│ 5. Realizar  │
+│    Fluxo     │
+│    no Navega.│
+╰──────┬──────╯
+       v
+╭──────────────╮
+│ 6. Exportar  │
+│    Script    │
+╰──────┬──────╯
+       v
+╭──────────────╮
+│ 7. Preencher │
+│    Template  │
+╰──────┬──────╯
+       v
+╭──────────────╮
+│ 8. Entregar  │
+│    para      │
+│    Revisão   │
+╰──────┬──────╯
+       v
+╭──────────────╮
+│ 9. Atualizar │
+│    Dashboard │
+╰──────────────╯
+```
+
+* Cada bloco representa uma etapa fundamental do processo.
+* Recomenda-se imprimir ou compartilhar este passo a passo no onboarding.
+
+---
+
+## 🏁 **Considerações Finais**
+
+* Utilize sempre a estrutura de arquivos e documentação recomendada para garantir padronização.
+* Em caso de dúvida ou dificuldade, consulte este material, a equipe de suporte ou responsável técnico.
+* Fluxos de erro e regravação são normais e fazem parte do processo de melhoria contínua.
+* O dashboard facilita a visão do todo e evita retrabalho.
+
+---
+
+**FIM DO DOCUMENTO**
 
 ---

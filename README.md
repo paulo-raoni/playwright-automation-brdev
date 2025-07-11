@@ -1,225 +1,285 @@
-Recebido, missão aceita.
-Aqui vai uma **estrutura de README.md** de alta clareza, já com divisões nítidas, disclaimer gigante sobre riscos e disciplina, **área especial para QA** (com emojis, ASCII e passo a passo), e tudo o que você pediu para visualização lúdica e onboarding mastigado.
 
 ---
 
-# 📚 **README – Automação E2E de Fluxos (Playwright)**
+# 📚 **README – Playwright Automation SNSR**
 
 ---
 
-## ⚠️ **DISCLAIMER CRÍTICO – RISCOS E DISCIPLINA** ⚠️
+## 🚀 **Propósito do Repositório**
 
-> ### ⚠️ **ATENÇÃO: DISCIPLINA E ORGANIZAÇÃO SÃO ESSENCIAIS!**
->
-> * Se **os fluxos não forem gravados, nomeados e documentados corretamente**, TODO o processo perde valor e vira caos.
-> * ⚠️ **NUNCA grave vários fluxos misturados num único arquivo!**
-> * 🚫 **Evite gravações longas e navegação desnecessária.** Grave apenas o essencial, **um fluxo por vez!**
->
-> ---
->
-> ### 📑 **Checklist Obrigatório a cada gravação:**
->
-> 1. **Nome do Fluxo** (ex: Login Básico, Criação de Ticket)
-> 2. **Objetivo** (O que está sendo testado?)
-> 3. **Passos Principais** (ex: “Entrar”, “Criar”, “Salvar”)
-> 4. **Observações** (Erros? Alertas? Comportamento inesperado?)
-> 5. **Status** (Gravado/Testado/Validado)
->
-> ---
->
-> ⚡ **Siga o template. NÃO PULE ETAPAS.**
-> ➡️ Isso garante rastreabilidade, repetibilidade e evita retrabalho!
->
-> ---
+Este repositório centraliza toda a estratégia, documentação e os fluxos de automação E2E com Playwright, padronizando o trabalho de QAs, Devs e líderes técnicos.
+O objetivo é garantir rastreabilidade, velocidade, aprendizado e **zero bagunça** — mesmo à medida que o time e o projeto crescem.
 
 ---
 
-## 🗂️ **Sumário**
+## 📖 Sumário
 
-* [1️⃣ Visão Geral do Processo](#visão-geral-do-processo)
-* [2️⃣ Responsabilidades: Dev x QA](#responsabilidades-dev-x-qa)
-* [3️⃣ 📋 Dashboard dos Fluxos](#dashboard-dos-fluxos)
-* [4️⃣ 🧑‍🔬 Área Especial: Passo a Passo para QA](#área-especial-passo-a-passo-para-qa)
-* [5️⃣ 🖼️ Diagramas ASCII/Fluxos](#diagramas-ascii-fluxos)
-* [6️⃣ 📚 Referências Rápidas (Comandos)](#referências-rápidas-comandos)
+* [🗂️ Visão Macro da Estrutura](#🗂️-visão-macro-da-estrutura)
+* [📦 Onde Encontrar Cada Coisa](#📦-onde-encontrar-cada-coisa)
+* [⚡ Disclaimer e Princípios](#⚡-disclaimer-e-princípios)
+* [🔎 Como Navegar por Aqui](#🔎-como-navegar-por-aqui)
+* [🗺️ Estrutura do Repositório (Visual)](#🗺️-estrutura-do-repositório-visual)
+* [🟢 Guia Rápido: Primeiro Uso](#🟢-guia-rápido-primeiro-uso)
+* [🛠️ Instalação e Teste do Playwright](#🛠️-instalação-e-teste-do-playwright)
+* [🌐 Mock Server Local para Testes](#🌐-mock-server-local-para-testes)
+* [🔗 Referências Importantes](#🔗-referências-importantes)
+* [🎯 Próximos Passos](#🎯-próximos-passos)
+* [👀 Diagrama Rápido — Macrofluxo do Ciclo](#👀-diagrama-rápido—macrofluxo-do-ciclo)
 
 ---
 
-## 1️⃣ **Visão Geral do Processo**
-
-```ascii
-[ QA grava fluxo (Codegen) ]
-         |
-         v
-[ Dev revisa e ajusta ]
-         |
-         v
-[ Fluxo documentado (ASCII/UML) ]
-         |
-         v
-[ Dashboard centraliza tudo ]
-         |
-         v
-[ Validação: QA + Gerente ]
+## 🗂️ **Visão Macro da Estrutura**
+```plaintext
+📁 PLAYWRIGHT-AUTOMATION-SNSR/
+ ├─ 📖 README.md
+ │      # Sumário do repo, objetivos, links rápidos, disclaimers, referência cruzada
+ ├─ 📂 fluxos_de_trabalho/
+ │    ├─ 🧑‍💼 Fluxo_QA.md
+ │    │     # Guia mastigado para QA: gravar, nomear, template, entregar
+ │    ├─ 💻 Fluxo_de_Desenvolvimento_E2E.md
+ │    │     # Guia do Dev: adaptar scripts, padrões técnicos, boas práticas
+ │    ├─ 🛠️ Fluxos_Avancados.md
+ │    │     # Casos reais: debugging, 2FA, mocks, CI/CD, troubleshooting
+ │    └─ 📄 Exemplos.md
+ │          # Pastebin: exemplos reais de scripts e massas de dados
+ ├─ 🚀 onboarding/
+ │    └─ 👁️ Onboarding_Visual.md
+ │          # Fluxograma visual, imagens, resumo de onboarding
+ ├─ 🧪 tests/
+ │    └─ e2e/
+ │         ├─ 📝 manual-flows/
+ │         │     ├─ login-basico.spec.ts
+ │         │     ├─ criar-ticket.spec.ts
+ │         │     └─ ...
+ │         ├─ 🧩 helpers/
+ │         │     └─ loginHelper.js
+ │         └─ 📦 massa_dados/
+ │               └─ usuarios_teste.json
+ ├─ 📊 dashboard/
+ │    └─ DASHBOARD.md
+ │          # Status de execuções, responsáveis, rastreio, datas
+ ├─ 🖼️ docs/
+ │    └─ imagens/
+ │          # Prints, diagramas, UML, fluxogramas
+ └─ ⚙️ .github/
+      ├─ ISSUE_TEMPLATE/
+      │     ├─ fluxo_qa.yml
+      │     ├─ fluxo_dev.yml
+      └─ workflows/
+           └─ playwright-ci.yml
 ```
 
 ---
 
-## 2️⃣ **Responsabilidades: Dev x QA**
+### 📦 **Onde Encontrar Cada Coisa**
 
-| Tarefa                                    | QA 👩‍🔬                 | Dev 👨‍💻             |
-| ----------------------------------------- | ------------------------ | --------------------- |
-| Mapear e executar os fluxos no sistema    | ✅                        | ❌                     |
-| Usar Playwright Codegen para gravar fluxo | ✅                        | ❌                     |
-| Nomear e descrever cada fluxo             | ✅                        | ❌                     |
-| Revisar scripts gravados                  | ❌                        | ✅                     |
-| Ajustar/assertar scripts para E2E         | ❌                        | ✅                     |
-| Gerar diagramas ASCII/UML                 | ❌                        | ✅                     |
-| Atualizar dashboard/documentação          | ✅ (dados) / ✅ (feedback) | ✅ (scripts/diagramas) |
-| Validar fluxos e outputs                  | ✅ (primeira validação)   | ✅ (validação técnica) |
-| Aprovar para produção                     | ❌                        | ✅ (após QA e gerente) |
+| Caminho                                              | Descrição/Utilidade                                                | Exemplo/Link                                                |
+| ---------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------- |
+| `fluxos_de_trabalho/Fluxo_QA.md`                     | Guia completo para QA: gravação, template, nomeação, envio         | [Ver](./fluxos_de_trabalho/Fluxo_QA.md)                     |
+| `fluxos_de_trabalho/Fluxo_de_Desenvolvimento_E2E.md` | Guia do Dev: automação, refino, asserts, prints, dashboard         | [Ver](./fluxos_de_trabalho/Fluxo_de_Desenvolvimento_E2E.md) |
+| `fluxos_de_trabalho/Fluxos_Avancados.md`             | Casos especiais: 2FA, upload, mocks, debugging, troubleshooting    | [Ver](./fluxos_de_trabalho/Fluxos_Avancados.md)             |
+| `fluxos_de_trabalho/Exemplos.md`                     | Pastebin: exemplos reais de scripts, trechos prontos               | [Ver](./fluxos_de_trabalho/Exemplos.md)                     |
+| `tests/e2e/manual-flows/`                            | Scripts gravados e refinados via Playwright                        | Ex: `login-basico.spec.ts`                                  |
+| `tests/e2e/helpers/`                                 | Funções utilitárias: login customizado, helpers técnicos           | Ex: `loginHelper.ts`                                        |
+| `tests/e2e/massa_dados/`                             | Dados para teste: usuários, tickets, fixtures em JSON              | Ex: `usuarios_teste.json`                                   |
+| `dashboard/DASHBOARD.md`                             | Tabela de status dos fluxos, datas, responsáveis, rastreio         | [Ver](./dashboard/DASHBOARD.md)                             |
+| `onboarding/Onboarding_Visual.md`                    | Tutorial visual: primeiro uso, fluxo do zero, checklist onboarding | [Ver](./onboarding/Onboarding_Visual.md)                    |
+| `docs/imagens/`                                      | Imagens, diagramas, prints, UML para documentação ou issues        | Ex: PNG, SVG                                                |
 
----
-
-## 3️⃣ **📋 Dashboard dos Fluxos**
-
-| Nome do Fluxo          | Objetivo                 | Status  | Script                | Diagrama ASCII       | Última revisão | Observações         |
-| ---------------------- | ------------------------ | ------- | --------------------- | -------------------- | -------------- | ------------------- |
-| Login Básico           | Login no sistema         | Gravado | login-flow\.spec.ts   | [ver](#login-ascii)  | 2024-07-10     | OK                  |
-| Criação de Ticket      | Abrir novo chamado       | Gravado | ticket-create.spec.ts | [ver](#ticket-ascii) | 2024-07-10     | Falha em campo X    |
-| Visualização de Ticket | Ver detalhes de chamados | Gravado | ticket-view\.spec.ts  | [ver](#view-ascii)   | 2024-07-10     | Comportamento lento |
-
-*Adicione novas linhas conforme fluxos forem gravados/testados.*
+> Consulte esta tabela sempre que precisar saber **onde encontrar, criar ou revisar** qualquer artefato real do projeto.
 
 ---
 
-## 4️⃣ **🧑‍🔬 Área Especial: Passo a Passo para QA**
+## ⚡ **Disclaimer e Princípios**
 
-### 🟢 **Guia Mastigado para Gravação dos Fluxos (QA Only)**
+> ### ⚠️ **DISCIPLINA E ORGANIZAÇÃO = AGILIDADE E SEGURANÇA**
+>
+> * Não grave fluxos misturados nem pule etapas de documentação.
+> * Sempre siga os templates e padrões.
+> * Qualquer dúvida: consulte a documentação do seu papel, ou abra uma *issue*.
+> * Fluxos que fogem ao padrão **não entram no pipeline!**
+> * O repositório é vivo: contribua, revise, questione.
 
-#### 👀 **Passo 1: Preparar Ambiente**
+---
 
-* Tenha o navegador fechado antes de começar.
-* Escolha o fluxo que será gravado (ex: Login, Abrir Chamado).
+## 🔎 **Como Navegar por Aqui**
 
-#### 🛠️ **Passo 2: Abrir o Terminal**
+* **QA (Testador Manual):**
+  Vá para [`fluxos_de_trabalho/Fluxo_QA.md`](./fluxos_de_trabalho/Fluxo_QA.md) para saber como gravar, nomear e entregar fluxos.
+* **Dev (Automação E2E):**
+  Consulte [`fluxos_de_trabalho/Fluxo_de_Desenvolvimento_E2E.md`](./fluxos_de_trabalho/Fluxo_de_Desenvolvimento_E2E.md) para saber como adaptar scripts, padrões técnicos e troubleshooting.
+* **Busca por Exemplos Reais:**
+  Veja [`fluxos_de_trabalho/Exemplos.md`](./fluxos_de_trabalho/Exemplos.md)
+* **Dúvidas Avançadas / Problemas:**
+  Use [`fluxos_de_trabalho/Fluxos_Avancados.md`](./fluxos_de_trabalho/Fluxos_Avancados.md)
+* **Onboarding ou apresentação rápida:**
+  [`onboarding/Onboarding_Visual.md`](./onboarding/Onboarding_Visual.md)
+* **Status e rastreio:**
+  [`dashboard/DASHBOARD.md`](./dashboard/DASHBOARD.md)
 
-* No Windows: `Win + R`, digite `cmd` e ENTER, navegue até a pasta do projeto.
-* No projeto, digite:
+---
+
+## 🗺️ **Estrutura do Repositório (Visual)**
+
+```ascii
+[ README.md ] —> Guia, sumário e filosofia
+     |
+     +--> fluxos_de_trabalho/
+     |        ├─ Fluxo_QA.md (Só para QA)
+     |        ├─ Fluxo_de_Desenvolvimento_E2E.md (Só Dev)
+     |        ├─ Fluxos_Avancados.md (Debug, CI/CD, mocks...)
+     |        └─ Exemplos.md (Pastebin de scripts)
+     |
+     +--> onboarding/ (Visual, onboarding rápido)
+     |
+     +--> tests/e2e/
+     |        ├─ manual-flows/ (Scripts gerados)
+     |        ├─ helpers/ (Utils de automação)
+     |        └─ massa_dados/ (Dados, fixtures)
+     |
+     +--> dashboard/ (Status e rastreio de fluxos)
+     +--> docs/imagens/ (Diagramas, prints, UML)
+     +--> .github/ (Issues e workflows)
+```
+
+---
+
+## 🟢 **Guia Rápido: Primeiro Uso**
+
+1. **QA grava o fluxo via Playwright Codegen**
+   [Veja como fazer 👉 Fluxo\_QA.md](./fluxos_de_trabalho/Fluxo_QA.md)
+2. **Dev adapta, refina e automatiza o script**
+   [Passo a passo 👉 Fluxo\_de\_Desenvolvimento\_E2E.md](./fluxos_de_trabalho/Fluxo_de_Desenvolvimento_E2E.md)
+3. **Exemplo prático de cada fluxo:**
+   [Exemplos.md](./fluxos_de_trabalho/Exemplos.md)
+4. **Problemas avançados?**
+   [Soluções e dicas 👉 Fluxos\_Avancados.md](./fluxos_de_trabalho/Fluxos_Avancados.md)
+5. **Ver status dos testes/documentação:**
+   [DASHBOARD.md](./dashboard/DASHBOARD.md)
+
+---
+
+## 🛠️ **Instalação e Teste do Playwright**
+
+> **Pré-requisito:** Node.js 18+ instalado ([download aqui](https://nodejs.org/))
+
+**1. Instale o Playwright no projeto:**
 
 ```bash
-npx playwright codegen https://meusistema.com
+npm install --save-dev playwright
 ```
 
-*(troque pela URL real do sistema)*
+**2. Instale os navegadores suportados:**
 
-#### 🎬 **Passo 3: Gravar o Fluxo**
-
-* Uma janela do navegador irá abrir.
-* Execute **apenas UM fluxo do início ao fim** (ex: só Login, ou só Abrir Ticket).
-* **DICA:** Faça tudo como faria normalmente, mas EVITE clicar fora do fluxo, navegar à toa, ou acessar áreas irrelevantes.
-
-#### 💾 **Passo 4: Salvar e Nomear o Script**
-
-* Quando terminar o fluxo, clique em *Export* e salve o arquivo com nome claro (ex: `login-flow.spec.ts`).
-
-#### 📝 **Passo 5: Preencher o Template**
-
-Preencha este mini-template (pode ser em e-mail, Notion, arquivo `.md`, etc):
-
-```
-**Nome do Fluxo:**  
-Exemplo: Login Básico
-
-**Objetivo:**  
-Exemplo: Validar login com usuário padrão.
-
-**Passos Principais:**  
-1. Acessar /login  
-2. Preencher usuário  
-3. Preencher senha  
-4. Clicar em “Entrar”
-
-**Observações:**  
-Exemplo: Mensagem de erro apareceu ao digitar senha errada.
+```bash
+npx playwright install
 ```
 
-#### 📤 **Passo 6: Enviar para Validação**
+**3. Teste se está tudo funcionando:**
 
-* Envie o arquivo + template preenchido para o dev responsável.
-* **Só grave um novo fluxo quando este for revisado!**
+```bash
+npx playwright codegen --help
+```
+
+**4. Rode um teste exemplo (se houver):**
+
+```bash
+npx playwright test tests/e2e/manual-flows/login-basico.spec.ts
+```
+
+> Dica: sempre execute os comandos na pasta onde está o `package.json` do projeto!
 
 ---
 
-## 5️⃣ **🖼️ Diagramas ASCII/Fluxos**
+## 🌐 Mock Server Local para Testes
 
-### Exemplo – **Login**
+
+╭─────────────╮         ╭───────────────╮        ╭─────────────╮
+│ Test Runner │──HTTP──▶│ Mock Server   │──▶HTML▶│ Navegador   │
+╰─────────────╯         ╰───────────────╯        ╰─────────────╯
+        ▲                    │ /login, /dashboard    ▲
+        └────────────────────────────────────────────┘
+
+Quer rodar o Playwright sem depender de ambiente real ou backend de terceiros?  
+Use o **Mock Server Local** (Node.js/Express) incluído no repo para simular login e dashboard!
+
+**Como usar:**
+
+1. Instale as dependências (se necessário):
+
+    ```bash
+    npm install express
+    ```
+
+2. Crie um arquivo chamado `mock-server.js` no root do projeto com o conteúdo:
+
+    ```js
+    const express = require('express');
+    const app = express();
+    app.use(express.json());
+
+    app.post('/login', (req, res) => {
+      // Aceita qualquer usuário/senha (mock!)
+      res.status(200).json({ success: true, redirect: '/dashboard' });
+    });
+
+    app.get('/dashboard', (req, res) => {
+      res.send('<h1>Dashboard mock – está logado!</h1>');
+    });
+
+    app.listen(3000, () => {
+      console.log('Mock server rodando em http://localhost:3000');
+    });
+    ```
+
+3. **Rode o mock server:**
+
+    ```bash
+    node mock-server.js
+    ```
+
+4. **Altere as URLs dos seus testes** para usar `http://localhost:3000/login` e `/dashboard`.
+
+5. Execute os testes normalmente!
+
+> Esse mock server serve só para testes rápidos de fluxo.  
+> Para mais rotas ou lógicas, adicione direto no `mock-server.js` conforme precisar.
+
+---
+
+
+## 🔗 **Referências Importantes**
+
+* [Documentação Oficial Playwright](https://playwright.dev/docs/codegen)
+* [Guia de Boas Práticas para Automatização](./fluxos_de_trabalho/Fluxo_de_Desenvolvimento_E2E.md)
+* [Material Visual para Onboarding](./onboarding/Onboarding_Visual.md)
+
+---
+
+## 🎯 **Próximos Passos**
+
+* [ ] Sempre confira os templates antes de começar um novo fluxo.
+* [ ] Contribua com novos exemplos reais para a pasta `Exemplos.md`.
+* [ ] Reporte problemas ou dúvidas usando o template de issue do GitHub.
+* [ ] Consulte os docs avançados para resolver casos complexos (autenticação, CI/CD, debugging).
+* [ ] Consulte também [TODO.md](./TODO.md) para ver melhorias e roadmap sugeridos.
+
+
+---
+
+## 👀 **Diagrama Rápido — Macrofluxo do Ciclo**
 
 ```ascii
-[ Início ]
-   |
-   v
-[ /login ]
-   |
-   v
-[ Usuário + Senha ]
-   |
-   v
-[ "Entrar" ]
-   |
-   v
-[ Dashboard ]
+╔══════════════════════════════════════════╗
+║    QA grava -> Dev adapta -> Fluxo      ║
+║    documentado -> Dashboard atualizado  ║
+║         ↓                ↓              ║
+║    Exemplos reais     Docs avançados    ║
+╚══════════════════════════════════════════╝
 ```
 
-### Exemplo – **Criação de Ticket**
-
-```ascii
-[ Início ]
-   |
-   v
-[ /tickets ]
-   |
-   v
-[ Novo Ticket ]
-   |
-   v
-[ Preencher Formulário ]
-   |
-   v
-[ Salvar ]
-   |
-   v
-[ Ver Ticket Criado ]
-```
-
-*(Inclua novos fluxos aqui!)*
-
 ---
 
-## 6️⃣ **📚 Referências Rápidas (Comandos)**
-
-* **Abrir recorder:**
-
-  ```
-  npx playwright codegen https://meusistema.com
-  ```
-
-* **Documentação oficial:**
-  [https://playwright.dev/docs/codegen](https://playwright.dev/docs/codegen)
-
-* **Como rodar teste gravado:**
-
-  ```
-  npx playwright test nome-do-fluxo.spec.ts
-  ```
+**Este README está em constante evolução. Contribuições e feedbacks são bem-vindos!**
 
 ---
-
-# **Fim do README – Save Point**
-
----
-
-**Steve Flow conclui:**
-Com esse README, **todo o ciclo dev + QA** fica organizado, auditável e pronto para onboarding de qualquer pessoa.
-Se quiser, posso gerar um diagrama UML da interação QA↔️Dev, ou preparar modelos de issues para acompanhamento.
-**Próximo passo?**
