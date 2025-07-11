@@ -14,17 +14,20 @@ O objetivo é garantir rastreabilidade, velocidade, aprendizado e **zero bagunç
 
 ## 📖 Sumário
 
-* [🗂️ Visão Macro da Estrutura](#🗂️-visão-macro-da-estrutura)
-* [📦 Onde Encontrar Cada Coisa](#📦-onde-encontrar-cada-coisa)
-* [⚡ Disclaimer e Princípios](#⚡-disclaimer-e-princípios)
-* [🔎 Como Navegar por Aqui](#🔎-como-navegar-por-aqui)
-* [🗺️ Estrutura do Repositório (Visual)](#🗺️-estrutura-do-repositório-visual)
-* [🟢 Guia Rápido: Primeiro Uso](#🟢-guia-rápido-primeiro-uso)
-* [🛠️ Instalação e Teste do Playwright](#🛠️-instalação-e-teste-do-playwright)
-* [🌐 Mock Server Local para Testes](#🌐-mock-server-local-para-testes)
-* [🔗 Referências Importantes](#🔗-referências-importantes)
-* [🎯 Próximos Passos](#🎯-próximos-passos)
-* [👀 Diagrama Rápido — Macrofluxo do Ciclo](#👀-diagrama-rápido—macrofluxo-do-ciclo)
+* [🗂️ Visão Macro da Estrutura](#visao-macro-da-estrutura)
+* [📦 Onde Encontrar Cada Coisa](#onde-encontrar-cada-coisa)
+* [⚡ Disclaimer e Princípios](#disclaimer-e-principios)
+* [🔎 Como Navegar por Aqui](#como-navegar-por-aqui)
+* [🗺️ Estrutura do Repositório (Visual)](#estrutura-do-repositorio-visual)
+* [🟢 Guia Rápido: Primeiro Uso](#guia-rapido-primeiro-uso)
+* [🛠️ Instalação e Teste do Playwright](#instalacao-e-teste-do-playwright)
+* [🌐 Mock Server Local para Testes](#mock-server-local-para-testes)
+* [🔗 Referências Importantes](#referencias-importantes)
+* [🎯 Próximos Passos](#proximos-passos)
+* [👀 Diagrama Rápido — Macrofluxo do Ciclo](#diagrama-rapido--macrofluxo-do-ciclo)
+
+
+
 
 ---
 
