@@ -160,39 +160,88 @@ O objetivo é garantir rastreabilidade, velocidade, aprendizado e **zero bagunç
 5. **Ver status dos testes/documentação:**
    [DASHBOARD.md](./dashboard/DASHBOARD.md)
 
----
+-----
 
-## 🛠️ **Instalação e Teste do Playwright**
+## 🛠️ **Instalação e Configuração do Ambiente**
 
-> **Pré-requisito:** Node.js 18+ instalado ([download aqui](https://nodejs.org/))
+Esta seção é o guia definitivo para configurar seu ambiente de desenvolvimento do zero.
 
-**1. Instale o Playwright no projeto:**
+### **Pré-requisitos**
+
+1.  **Git:** Essencial para clonar o repositório.
+
+2.  **Node.js:** A base para executar o Playwright e seus scripts.
+
+      * **Método Recomendado: `nvm` (Node Version Manager)**
+        O `nvm` é a forma mais robusta de instalar o Node.js, pois evita problemas de permissão e permite gerenciar múltiplas versões facilmente.
+
+          * **Instalação do `nvm`:** Siga as instruções no [repositório oficial do nvm](https://www.google.com/search?q=https://github.com/nvm-sh/nvm%23installing-and-updating).
+          * **Instalação do Node.js:** `nvm install --lts`
+
+      * **Método Alternativo: Instalador Oficial**
+        Você pode baixar o Node.js diretamente do [site oficial](https://nodejs.org/). Esteja ciente de que, dependendo do seu sistema, pode ser necessário usar `sudo` para instalar pacotes globais, o que não é ideal.
+
+### **Passo 1: Clonar e Instalar Dependências do Projeto**
+
+Execute estes comandos no seu terminal.
 
 ```bash
-npm install --save-dev playwright
+# 1. Clone o repositório para a sua máquina
+git clone https://github.com/paulo-raoni/playwright-automation-snsr
+
+# 2. Entre na pasta do projeto
+cd playwright-automation-snsr
+
+# 3. Instale todas as dependências listadas no package.json
+npm install
 ```
 
-**2. Instale os navegadores suportados:**
+### **Passo 2: Instalar os Navegadores do Playwright**
+
+Este comando baixa as versões dos navegadores (Chromium, Firefox, WebKit) gerenciadas pelo Playwright.
 
 ```bash
 npx playwright install
 ```
 
-**3. Teste se está tudo funcionando:**
+### **Passo 3: Instalar Dependências do Sistema Operacional (Linux)**
+
+Para que os navegadores possam rodar em modo *headless* (sem interface gráfica), eles precisam de bibliotecas adicionais do sistema.
 
 ```bash
-npx playwright codegen --help
+# Este comando analisa seu SO e instala as dependências necessárias
+sudo npx playwright install-deps
 ```
 
-**4. Rode um teste exemplo (se houver):**
+> 🚨 **Solução para Ambientes Linux Restritivos**
+>
+> Se você usou o `nvm` e o comando acima falhou com o erro `sudo: npx: comando não encontrado`, isso ocorre porque seu sistema tem uma política de `sudo` restritiva.
+>
+> **A solução é uma configuração única no seu ambiente.** Execute os dois comandos abaixo para criar "atalhos" (links simbólicos) em um local que o `sudo` reconhece:
+>
+> ```bash
+> sudo ln -s "$(which node)" /usr/local/bin/node
+> ```
+>
+> ```bash
+> sudo ln -s "$(which npx)" /usr/local/bin/npx
+> ```
+>
+> Após executar esses dois comandos, tente o `sudo npx playwright install-deps` novamente.
+
+### **Passo 4: Verificação Final**
+
+Para garantir que toda a configuração está correta, execute a suíte de testes:
 
 ```bash
-npx playwright test tests/e2e/manual-flows/login-basico.spec.ts
+npx playwright test
 ```
 
-> Dica: sempre execute os comandos na pasta onde está o `package.json` do projeto!
+Se os testes rodarem sem erros de ambiente, sua configuração está pronta.
 
----
+> Dica: sempre execute os comandos na pasta onde está o `package.json` do projeto\!
+
+-----
 
 ## 🌐 Mock Server Local para Testes
 
