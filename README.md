@@ -1,7 +1,7 @@
 
 ---
 
-# 📚 **README – Playwright Automation - Brazilian Dev**
+# 📚 **README – Playwright Automation - BR DEV**
 
 ---
 
