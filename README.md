@@ -1,7 +1,7 @@
 
 ---
 
-# 📚 **README – Playwright Automation SNSR**
+# 📚 **README – Playwright Automation - Brazilian Dev**
 
 ---
 
@@ -33,7 +33,7 @@ O objetivo é garantir rastreabilidade, velocidade, aprendizado e **zero bagunç
 
 ## 🗂️ **Visão Macro da Estrutura**
 ```plaintext
-📁 PLAYWRIGHT-AUTOMATION-SNSR/
+📁 PLAYWRIGHT-AUTOMATION-BRDEV/
  ├─ 📖 README.md
  │      # Sumário do repo, objetivos, links rápidos, disclaimers, referência cruzada
  ├─ 📂 fluxos_de_trabalho/
@@ -187,10 +187,10 @@ Execute estes comandos no seu terminal.
 
 ```bash
 # 1. Clone o repositório para a sua máquina
-git clone https://github.com/paulo-raoni/playwright-automation-snsr
+git clone https://github.com/paulo-raoni/playwright-automation-brdev
 
 # 2. Entre na pasta do projeto
-cd playwright-automation-snsr
+cd playwright-automation-brdev
 
 # 3. Instale todas as dependências listadas no package.json
 npm install
