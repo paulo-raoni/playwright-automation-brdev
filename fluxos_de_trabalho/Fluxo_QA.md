@@ -17,6 +17,7 @@ Este documento padroniza o processo de gravação, documentação e acompanhamen
 2. [Checklist de Preparação](#2-checklist-de-preparação)
 3. [Abertura e Navegação no Terminal](#3-abertura-e-navegação-no-terminal)
 4. [Gravação do Fluxo – Passo a Passo](#4-gravação-do-fluxo--passo-a-passo)
+      * [4.1 Entendendo a Interface do Codegen]
 5. [Salvamento e Nomeação do Script](#5-salvamento-e-nomeação-do-script)
 6. [Documentação e Template](#6-documentação-e-template)
 7. [Entrega e Revisão Técnica](#7-entrega-e-revisão-técnica)
@@ -141,70 +142,78 @@ A gravação do fluxo é a base do processo de automação. Cada fluxo deve ser 
 
 ### **Instruções Detalhadas**
 
-1. Confirme que está na pasta correta do terminal.
+1.  Confirme que está na pasta correta do terminal.
 
-2. Digite e execute o comando (ajuste a URL conforme necessário):
+2.  Digite e execute o comando (ajuste a URL conforme necessário):
 
-   ```
-   npx playwright codegen https://enderecodomeusistema.com
-   ```
+    ```
+    npx playwright codegen https://enderecodomeusistema.com
+    ```
 
-3. O Playwright abrirá uma janela do navegador.
+3.  Ao executar o comando, **duas janelas irão abrir**. É fundamental entender o papel de cada uma. **Consulte a próxima seção para um guia detalhado sobre a interface.**
 
-4. Realize o fluxo completo (exemplo: login, cadastro, criação de ticket), do início ao fim, sem sair ou navegar por áreas não relacionadas.
+4.  Na janela do navegador, realize o fluxo completo (exemplo: login, cadastro, criação de ticket), do início ao fim, sem sair ou navegar por áreas não relacionadas.
 
-5. Evite abrir menus, acessar páginas desnecessárias ou testar mais de um fluxo na mesma gravação.
+5.  Evite abrir menus, acessar páginas desnecessárias ou testar mais de um fluxo na mesma gravação.
 
-6. Caso algum passo seja feito de maneira errada, feche a janela e inicie novamente.
+6.  Caso algum passo seja feito de maneira errada, feche as duas janelas e inicie o comando novamente.
 
-#### **Fluxo Visual – Gravação**
+### 4.1 Entendendo a Interface do Codegen
+
+Quando a gravação começa, você verá estas duas janelas:
 
 ```ascii
-╔══════════════════════════════════╗
-║        Gravação do Fluxo        ║
-╚══════════════════════════════════╝
-        |
-[ Iniciar comando codegen ]
-        |
-[ Navegador Playwright abre ]
-        |
-[ Realizar UM fluxo completo ]
-        |
-[ Revisar ações antes de exportar ]
+┌───────────────────────────────┐      ┌────────────────────────────────┐
+│                               │      │ 👽 PLAYWRIGHT INSPECTOR        │
+│      🌐 NAVEGADOR LIMPO       │      │                                │
+│                               │      │ ⏺️ Recording is on...          │
+│ É nesta janela que você       │      │                                │
+│ interage com o site: clica,   │      │ O código da sua gravação       │
+│ digita e navega como um       │      │ aparece aqui em tempo real.    │
+│ usuário faria.                │      │ ...                            │
+│                               │      │                                │
+└───────────────────────────────┘      │ [▶️] [⏹️] [📋 Copy] [🗑️ Clear] │
+                                       └────────────────────────────────┘
 ```
 
-> 🎯 *Fluxo bem gravado = automação mais confiável!*
+  * **Dica sobre o "Popup de HTML":** Ao passar o mouse sobre os elementos no **Navegador Limpo**, o Playwright irá destacar o seletor. **Ignore essa caixa e clique no elemento normalmente**. Ela serve apenas para mostrar ao desenvolvedor como o elemento está sendo identificado.
+  * **Se a janela do Inspector atrapalhar:** Apenas arraste-a para o lado.
 
----
+> 🎯 *Fluxo bem gravado = automação mais confiável\!*
+
+-----
 
 ## 5️⃣ Salvamento e Nomeação do Script
 
-Após concluir a gravação, é fundamental exportar e nomear o script corretamente.
+Após concluir a gravação, o processo para salvar é diferente do usual. Não existe um botão "Salvar arquivo". O método correto é **Copiar e Colar**.
 
 ### **Instruções Detalhadas**
 
-1. Ao finalizar o fluxo no navegador, localize a opção para exportar/salvar o script.
-2. Escolha um nome de arquivo objetivo e descritivo, por exemplo:
+1.  Com o fluxo concluído no **Navegador Limpo**, mova sua atenção para a janela do **Playwright Inspector**.
+2.  Clique no botão **`[📋 Copy]`** para copiar todo o código gerado.
+3.  Abra seu editor de texto ou programa de desenvolvimento e crie um novo arquivo em branco.
+4.  **Cole** o código que você acabou de copiar dentro deste novo arquivo.
+5.  Salve o arquivo na pasta designada, usando um nome objetivo e descritivo. O padrão é terminar com `.spec.js` ou `.spec.ts`.
+      * `login-basico.spec.js`
+      * `criar-ticket.spec.js`
+      * `editar-perfil.spec.js`
 
-   * `login-basico.spec.ts`
-   * `criar-ticket.spec.ts`
-   * `editar-perfil.spec.ts`
-3. Salve o arquivo na pasta designada para scripts.
-
-#### **Fluxo Visual – Salvamento**
+#### **Fluxo Visual – Salvamento (Corrigido)**
 
 ```ascii
 ╔════════════════════════════╗
-║     Salvamento do Script  ║
+║     Salvamento do Script   ║
 ╚════════════════════════════╝
         |
-[ Finalizar gravação ]
+[ Finalizar gravação no Navegador ]
         |
-[ Exportar script gerado ]
+[ Na janela do Inspector, clicar em "Copy" ]
         |
-[ Nomear de forma clara ]
+[ Criar um novo arquivo .js/.ts no editor ]
         |
-[ Salvar na pasta padrão ]
+[ Colar o código copiado no arquivo ]
+        |
+[ Salvar o arquivo com nome padrão ]
 ```
 
 > 🗂️ *Organização nos nomes facilita busca e manutenção dos testes.*
@@ -268,7 +277,7 @@ Fluxo executado conforme esperado. Não foram observados erros.
 
 ```ascii
 ╔════════════════════════════════╗
-║ Documentação do Fluxo Gravado ║
+║ Documentação do Fluxo Gravado  ║
 ╚════════════════════════════════╝
         |
 [ Script Playwright (.spec.ts) ]
@@ -341,7 +350,7 @@ A revisão técnica assegura que o fluxo está corretamente gravado e documentad
 
 ```ascii
 ╔══════════════════════════════╗
-║   Atualização do Dashboard  ║
+║   Atualização do Dashboard   ║
 ╚══════════════════════════════╝
         |
 [ Novo fluxo documentado ]
@@ -390,17 +399,17 @@ A revisão técnica assegura que o fluxo está corretamente gravado e documentad
 ### **Fluxo Macro (Ajustado e Humanizado)**
 
 ```ascii
-╔═════════════════════════════════════════════════════════════════════╗
-║           JORNADA DE AUTOMAÇÃO DE FLUXOS E2E - PLAYWRIGHT         ║
-╠══════╦═════════════╦═══════════════╦═══════════════╦══════╦══════╣
-║ Prep ║ Gravação    ║ Documentação  ║ Revisão       ║ Dash ║ Final║
-╠══════╬═════════════╬═══════════════╬═══════════════╬══════╬══════╣
-║ 📋   ║ 🖱️           ║ 📝            ║ 🔍            ║ 📊   ║ ✅   ║
-╠══════╩══════╦══════╩══════╦══════╩══╦═════╩═══════╦══════╩══════╣
-║             ⬇️            ⬇️         ⬇️             ⬇️           ║
-║   Fluxo      Fluxo         Fluxo      Fluxo        Fluxo         ║
-║ de Prep   de Gravação   de Doc/Erro  de Revisão    de Dashboard  ║
-╚═══════════════════════════════════════════════════════════════════╝
+╔═════════════════════════════════════════════════════════════════════════╗
+║           JORNADA DE AUTOMAÇÃO DE FLUXOS E2E - PLAYWRIGHT               ║
+╠══════╦═══════════════╦═══════════════╦═══════════════╦════════╦═════════╣
+║ Prep ║ Gravação      ║ Documentação  ║ Revisão       ║ Dash   ║ Final   ║
+╠══════╬═══════════════╬═══════════════╬═══════════════╬════════╬═════════╣
+║  📋  ║     🖱️        ║      📝       ║      🔍       ║  📊    ║   ✅    ║
+╠══════╩═══════════════╩═══════════════╩═══════════════╩════════╩═════════╣
+║   ⬇️   ║      ⬇️     ║      ⬇️       ║       ⬇️      ║   ⬇️   ║    ⬇️   ║
+║ Fluxo  ║   Fluxo de  ║   Fluxo de    ║   Fluxo de    ║ Fluxo  ║  Fluxo  ║
+║ dePrep ║   Gravação  ║ Documentação  ║    Revisão    ║  Dash  ║  Final  ║
+╚═════════════════════════════════════════════════════════════════════════╝
 ```
 
 ---
